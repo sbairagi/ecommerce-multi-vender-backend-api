@@ -8,7 +8,7 @@ class HomeProductsSerilaizer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['url','product_name','price','price_not','image1']
+        fields = ['url','product_name','price','price_not','image1', 'category', 'root_category', 'subcategory']
 
 
 # class ProductSizedetailSerilaizer(serializers.ModelSerializer):

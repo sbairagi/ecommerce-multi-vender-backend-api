@@ -18,7 +18,7 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     phone_number = models.CharField(max_length=10)
     is_seller = models.BooleanField(default=False)
-    is_user = models.BooleanField(default=True)
+    is_user = models.BooleanField(default=False)
     is_delivery_boy = models.BooleanField(default=False)
     aproved_seller = models.BooleanField(default=False, max_length=6)
 

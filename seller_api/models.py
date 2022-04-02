@@ -140,6 +140,12 @@ class ProductSize(models.Model):
 	product_size_id = models.BigAutoField(primary_key=True)
 	product = models.ForeignKey(Product,on_delete=models.CASCADE, related_name='productsize')
 	colour = models.CharField(max_length=50, null=True, blank=True)
+	
+
+class ProductSize_and_quantity(models.Model):
+	id = models.BigAutoField(primary_key=True)
+	productsize = models.ForeignKey(ProductSize,on_delete=models.CASCADE, related_name='productsize_and_quantity')
+	product = models.ForeignKey(Product,on_delete=models.CASCADE)
 	size = models.CharField(max_length=20, null=True, blank=True)
 	quantity = models.IntegerField(default=0)
 

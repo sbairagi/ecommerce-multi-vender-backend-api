@@ -30,6 +30,7 @@ class SellerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = SallerDetail
         fields = ('url', 'photo', 'adharcard', 'pancard', 'gumasta', 'phone_number', 'email', 'gst_Number', 'shop_Name', 'whatsapp_no', 'shop_Address', 'pincode', 'landmark', 'locality', 'city','state','account_Holder_Name', 'account_Number', 'ifsc_Code', 'bank_name')
+        
 
     def create(self, validated_data):
         user = None
@@ -38,7 +39,7 @@ class SellerProfileSerializer(serializers.ModelSerializer):
             user = request.user
         user.is_seller = True
         user.save()
-        object = SallerDetail.objects.create(user=user, **validated_data)
+        object = SallerDetail.objects.create(user=user, email=user.email, phone_number=user.phone_number, **validated_data)
         return object
 
 class DeliveryBoyProfileSerializer(serializers.ModelSerializer):

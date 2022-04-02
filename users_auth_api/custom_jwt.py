@@ -12,7 +12,7 @@ from .models import SallerDetail, User
 def jwt_payload_handler(user):
     username_field = get_username_field()
     username = get_username(user)
-    # print(user)
+    print(username_field,username)
     # userprofile = User.objects.get(id=user.pk)
     # print(userprofile.phone_number)
 
@@ -24,13 +24,12 @@ def jwt_payload_handler(user):
 
     payload = {
         'user_id': user.pk,
-        # 'username': username,
+        'username': user.email,
         'first_name': user.first_name,
         'last_name': user.last_name,
-        'email': user.email,
         'phone_number': user.phone_number,
-        'is_seller': user.is_seller,
-        'is_user': user.is_user,
+        # 'is_seller': user.is_seller,
+        # 'is_user': user.is_user,
         'is_Ap': user.aproved_seller,
         'exp': datetime.utcnow() + api_settings.JWT_EXPIRATION_DELTA
     }
@@ -39,7 +38,7 @@ def jwt_payload_handler(user):
     if isinstance(user.pk, uuid.UUID):
         payload['user_id'] = str(user.pk)
 
-    payload[username_field] = username
+    # payload[username_field] = username
 
     # Include original issued at time for a brand new token,
     # to allow token refresh

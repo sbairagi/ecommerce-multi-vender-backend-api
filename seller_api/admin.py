@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.db.models.base import Model
+
+from seller_api.serializers import ProductSerilaizer
 from .models import *
 # Register your models here.
 
@@ -21,4 +23,4 @@ class ProductAdmin(admin.ModelAdmin):
     # model = Category
     inlines = (SubCategoryAdmin, )
 
-admin.site.register((ProductSize,))
+admin.site.register((ProductSize,ProductSize_and_quantity))

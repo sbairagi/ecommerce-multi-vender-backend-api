@@ -54,12 +54,17 @@ class CategorySerilaizer(serializers.ModelSerializer):
     #             SubCategory.objects.create(product=product, **size)
     #     return product
 
-    
+class ProductSize_and_quantitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductSize_and_quantity
+        fields = '__all__'
         
-class ProductSizeSerilaizer(serializers.ModelSerializer):
+        
+class ProductSizeSerilaizer(WritableNestedModelSerializer,serializers.ModelSerializer):
+    productsize_and_quantity = ProductSize_and_quantitySerializer(many=True, required=False)
     class Meta:
         model = ProductSize
-        fields = ['product_size_id','product', 'colour', 'size', 'quantity']
+        fields = ['product_size_id','product', 'colour','productsize_and_quantity']
         read_only_fields = ['product']
         
 
